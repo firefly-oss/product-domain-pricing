@@ -1,0 +1,27 @@
+package com.firefly.domain.product.pricing.core.fees.handlers;
+
+import com.firefly.common.domain.cqrs.annotations.CommandHandlerComponent;
+import com.firefly.common.domain.cqrs.command.CommandHandler;
+import com.firefly.common.product.sdk.api.ProductFeeStructureApi;
+import com.firefly.domain.product.pricing.core.fees.commands.RegisterProductFeeStructureCommand;
+import reactor.core.publisher.Mono;
+
+import java.util.Objects;
+import java.util.UUID;
+
+@CommandHandlerComponent
+public class RegisterProductFeeStructureHandler extends CommandHandler<RegisterProductFeeStructureCommand, UUID> {
+
+    private final ProductFeeStructureApi productFeeStructureApi;
+
+    public RegisterProductFeeStructureHandler(ProductFeeStructureApi productFeeStructureApi) {
+        this.productFeeStructureApi = productFeeStructureApi;
+    }
+
+    @Override
+    protected Mono<UUID> doHandle(RegisterProductFeeStructureCommand cmd) {
+        return productFeeStructureApi.createFeeStructure(cmd.getProductId(), cmd, UUID.randomUUID().toString())
+                .mapNotNull(productFeeStructureDTO ->
+                        Objects.requireNonNull(Objects.requireNonNull(productFeeStructureDTO)).getProductFeeStructureId());
+    }
+}
