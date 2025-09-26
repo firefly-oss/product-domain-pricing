@@ -1,0 +1,1053 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "product-domain-pricing",
+    "description": "Product Domain Pricing Layer Application",
+    "contact": {
+      "name": "Firefly Software Solutions Inc",
+      "email": "dev@getfirefly.io"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://core.getfirefly.io/product-domain-pricing",
+      "description": "Development Environment"
+    },
+    {
+      "url": "/",
+      "description": "Local Development Environment"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Pricing",
+      "description": "CQ queries and registration for product pricing"
+    }
+  ],
+  "paths": {
+    "/api/v1/pricing/{pricingId}": {
+      "put": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Amend pricing",
+        "description": "Amend rates/margins/tiers by creating a new effective version.",
+        "operationId": "amendPricing",
+        "parameters": [
+          {
+            "name": "pricingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductPricingCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing/fees/schemes/{schemeId}/components/{componentId}": {
+      "put": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Update fee rule",
+        "description": "Update a specific fee calculation rule.",
+        "operationId": "updateFeeRule",
+        "parameters": [
+          {
+            "name": "schemeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFeeApplicationRuleCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing": {
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Register pricing",
+        "description": "Create rates with tiers and effectiveFrom date.",
+        "operationId": "registerPricing",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterProductPricingCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing/fees/schemes": {
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Define fee scheme",
+        "description": "Define fee types and calculation rules.",
+        "operationId": "defineFeeScheme",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterFeeSchemaCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing/eligibility": {
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Publish eligibility criteria",
+        "description": "Publish eligibility rules (KYC/KYB, score, income, activity).",
+        "operationId": "publishEligibility",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishEligibilityCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing/eligibility/{eligibilityId}/evaluate": {
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Evaluate eligibility",
+        "description": "Evaluate applicant facts and return fit/not-fit with reasons.",
+        "operationId": "evaluateEligibility",
+        "parameters": [
+          {
+            "name": "eligibilityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateEligibilityCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing/eligibility/{eligibilityId}": {
+      "patch": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Adjust eligibility criteria",
+        "description": "Adjust criteria with versioning.",
+        "operationId": "adjustEligibility",
+        "parameters": [
+          {
+            "name": "eligibilityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Party-ID",
+            "in": "header",
+            "description": "Identifier of the client (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Employee-ID",
+            "in": "header",
+            "description": "Identifier of the employee (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Service-Account-ID",
+            "in": "header",
+            "description": "Identifier of the service account (at least one of X-Party-ID, X-Employee-ID, or X-Service-Account-ID is required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Roles",
+            "in": "header",
+            "description": "Roles of the subject (CUSTOMER, ADMIN, CUSTOMER_SUPPORT, SUPERVISOR, MANAGER, BRANCH_STAFF, SERVICE_ACCOUNT), comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Auth-Scopes",
+            "in": "header",
+            "description": "OAuth2 scopes like contracts.read, accounts.write, comma-separated (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Unique identifier for the request, used for traceability (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdjustEligibilityCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UpdateProductPricingCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "productPricingId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingType": {
+            "type": "string",
+            "enum": [
+              "INTEREST_RATE",
+              "FEE",
+              "COVERAGE",
+              "SUBSCRIPTION"
+            ]
+          },
+          "amountValue": {
+            "type": "number"
+          },
+          "amountUnit": {
+            "type": "string"
+          },
+          "pricingCondition": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "UpdateFeeApplicationRuleCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "feeApplicationRuleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "feeComponentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ruleDescription": {
+            "type": "string"
+          },
+          "ruleConditions": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "RegisterProductPricingCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "productPricingId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingType": {
+            "type": "string",
+            "enum": [
+              "INTEREST_RATE",
+              "FEE",
+              "COVERAGE",
+              "SUBSCRIPTION"
+            ]
+          },
+          "amountValue": {
+            "type": "number"
+          },
+          "amountUnit": {
+            "type": "string"
+          },
+          "pricingCondition": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "RegisterFeeApplicationRuleCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "feeApplicationRuleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "feeComponentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ruleDescription": {
+            "type": "string"
+          },
+          "ruleConditions": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "RegisterFeeComponentCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "feeComponentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "feeStructureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "feeType": {
+            "type": "string",
+            "enum": [
+              "ORIGINATION_FEE",
+              "LATE_PAYMENT_FEE",
+              "TRANSACTION_FEE",
+              "SERVICE_FEE"
+            ]
+          },
+          "feeDescription": {
+            "type": "string"
+          },
+          "feeAmount": {
+            "type": "number"
+          },
+          "feeUnit": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "PERCENTAGE"
+            ]
+          },
+          "applicableConditions": {
+            "type": "string"
+          }
+        }
+      },
+      "RegisterFeeSchemaCommand": {
+        "type": "object",
+        "properties": {
+          "feeApplicationRule": {
+            "$ref": "#/components/schemas/RegisterFeeApplicationRuleCommand"
+          },
+          "feeStructure": {
+            "$ref": "#/components/schemas/RegisterFeeStructureCommand"
+          },
+          "feeComponent": {
+            "$ref": "#/components/schemas/RegisterFeeComponentCommand"
+          },
+          "productFeeStructure": {
+            "$ref": "#/components/schemas/RegisterProductFeeStructureCommand"
+          }
+        }
+      },
+      "RegisterFeeStructureCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "feeStructureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "feeStructureName": {
+            "type": "string"
+          },
+          "feeStructureDescription": {
+            "type": "string"
+          },
+          "feeStructureType": {
+            "type": "string",
+            "enum": [
+              "VERTICAL",
+              "HORIZONTAL"
+            ]
+          }
+        }
+      },
+      "RegisterProductFeeStructureCommand": {
+        "type": "object",
+        "properties": {
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "productFeeStructureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "feeStructureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PublishEligibilityCommand": {
+        "type": "object"
+      },
+      "EvaluateEligibilityCommand": {
+        "type": "object"
+      },
+      "AdjustEligibilityCommand": {
+        "type": "object"
+      }
+    }
+  }
+}
