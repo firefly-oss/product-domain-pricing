@@ -1,6 +1,6 @@
 package com.firefly.domain.product.pricing.core.pricing.workflows;
 
-import com.firefly.common.domain.cqrs.command.CommandBus;
+import com.firefly.common.cqrs.command.CommandBus;
 import com.firefly.domain.product.pricing.core.pricing.commands.RegisterProductPricingCommand;
 import com.firefly.transactional.annotations.Saga;
 import com.firefly.transactional.annotations.SagaStep;

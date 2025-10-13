@@ -1,7 +1,7 @@
 package com.firefly.domain.product.pricing.core.pricing.handlers;
 
-import com.firefly.common.domain.cqrs.annotations.CommandHandlerComponent;
-import com.firefly.common.domain.cqrs.command.CommandHandler;
+import com.firefly.common.cqrs.annotations.CommandHandlerComponent;
+import com.firefly.common.cqrs.command.CommandHandler;
 import com.firefly.common.product.sdk.api.ProductPricingApi;
 import com.firefly.domain.product.pricing.core.pricing.commands.UpdateProductPricingCommand;
 import reactor.core.publisher.Mono;

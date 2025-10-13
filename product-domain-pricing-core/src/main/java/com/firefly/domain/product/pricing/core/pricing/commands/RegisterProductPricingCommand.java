@@ -16,7 +16,7 @@
 
 package com.firefly.domain.product.pricing.core.pricing.commands;
 
-import com.firefly.common.domain.cqrs.command.Command;
+import com.firefly.common.cqrs.command.Command;
 import com.firefly.common.product.sdk.model.ProductPricingDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
