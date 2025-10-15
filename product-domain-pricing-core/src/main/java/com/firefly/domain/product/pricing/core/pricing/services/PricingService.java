@@ -2,8 +2,7 @@ package com.firefly.domain.product.pricing.core.pricing.services;
 
 import com.firefly.domain.product.pricing.core.pricing.commands.RegisterProductPricingCommand;
 import com.firefly.domain.product.pricing.core.pricing.commands.UpdateProductPricingCommand;
-import com.firefly.transactional.core.SagaResult;
-import jakarta.validation.Valid;
+import com.firefly.transactional.saga.core.SagaResult;
 import reactor.core.publisher.Mono;
 
 public interface PricingService {

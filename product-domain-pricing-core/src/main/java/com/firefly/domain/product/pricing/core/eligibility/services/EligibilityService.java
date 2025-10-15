@@ -3,9 +3,7 @@ package com.firefly.domain.product.pricing.core.eligibility.services;
 import com.firefly.domain.product.pricing.core.eligibility.commands.AdjustEligibilityCommand;
 import com.firefly.domain.product.pricing.core.eligibility.commands.EvaluateEligibilityCommand;
 import com.firefly.domain.product.pricing.core.eligibility.commands.PublishEligibilityCommand;
-import com.firefly.domain.product.pricing.core.fees.commands.RegisterFeeSchemaCommand;
-import com.firefly.domain.product.pricing.core.fees.commands.UpdateFeeApplicationRuleCommand;
-import com.firefly.transactional.core.SagaResult;
+import com.firefly.transactional.saga.core.SagaResult;
 import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;
 
