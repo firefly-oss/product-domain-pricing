@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "product-domain-pricing",
+    "title": "domain-product-pricing",
     "description": "Product Domain Pricing Layer Application",
     "contact": {
       "name": "Firefly Software Solutions Inc",
@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "http://core.getfirefly.io/product-domain-pricing",
+      "url": "http://core.getfirefly.io/domain-product-pricing",
       "description": "Development Environment"
     },
     {

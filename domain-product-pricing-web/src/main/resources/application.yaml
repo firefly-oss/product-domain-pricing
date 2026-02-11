@@ -1,6 +1,6 @@
 spring:
   application:
-    name: product-domain-pricing
+    name: domain-product-pricing
     version: 1.0.0
     description: Product Domain Pricing Layer Application
     team:

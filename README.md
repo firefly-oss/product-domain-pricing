@@ -2,7 +2,7 @@
 
 A reactive domain-layer microservice that orchestrates product pricing, fee management, and eligibility evaluation. Built on [FireflyFramework](https://github.com/fireflyframework/) and Spring WebFlux, this service exposes a CQRS/Saga-driven API that delegates persistence to the **common-platform-product-mgmt** platform service.
 
-> **Repository:** [https://github.com/firefly-oss/product-domain-pricing](https://github.com/firefly-oss/product-domain-pricing)
+> **Repository:** [https://github.com/firefly-oss/domain-product-pricing](https://github.com/firefly-oss/domain-product-pricing)
 
 ---
 
@@ -23,12 +23,12 @@ Product Domain Pricing is the domain orchestration layer responsible for:
 ### Module Structure
 
 ```
-product-domain-pricing (parent POM)
-|-- product-domain-pricing-core         # Domain logic: commands, handlers, services, sagas, constants
-|-- product-domain-pricing-interfaces   # Interface/contract layer between core and web
-|-- product-domain-pricing-infra        # Infrastructure: API client factory, configuration properties
-|-- product-domain-pricing-web          # Spring Boot application, REST controllers, OpenAPI config
-|-- product-domain-pricing-sdk          # Auto-generated reactive client SDK (OpenAPI Generator)
+domain-product-pricing (parent POM)
+|-- domain-product-pricing-core         # Domain logic: commands, handlers, services, sagas, constants
+|-- domain-product-pricing-interfaces   # Interface/contract layer between core and web
+|-- domain-product-pricing-infra        # Infrastructure: API client factory, configuration properties
+|-- domain-product-pricing-web          # Spring Boot application, REST controllers, OpenAPI config
+|-- domain-product-pricing-sdk          # Auto-generated reactive client SDK (OpenAPI Generator)
 ```
 
 ### Tech Stack
@@ -130,13 +130,13 @@ All events are published to the `domain-layer` Kafka topic:
 
 ```bash
 # Run with default profile
-./mvnw -pl product-domain-pricing-web spring-boot:run
+./mvnw -pl domain-product-pricing-web spring-boot:run
 
 # Run with dev profile
-./mvnw -pl product-domain-pricing-web spring-boot:run -Dspring-boot.run.profiles=dev
+./mvnw -pl domain-product-pricing-web spring-boot:run -Dspring-boot.run.profiles=dev
 
 # Run as JAR
-java -jar product-domain-pricing-web/target/product-domain-pricing.jar
+java -jar domain-product-pricing-web/target/domain-product-pricing.jar
 ```
 
 ---

@@ -11,15 +11,15 @@
     </parent>
 
     <groupId>com.firefly</groupId>
-    <artifactId>product-domain-pricing</artifactId>
+    <artifactId>domain-product-pricing</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>product-domain-pricing-core</module>
-        <module>product-domain-pricing-interfaces</module>
-        <module>product-domain-pricing-web</module>
-        <module>product-domain-pricing-sdk</module>
-        <module>product-domain-pricing-infra</module>
+        <module>domain-product-pricing-core</module>
+        <module>domain-product-pricing-interfaces</module>
+        <module>domain-product-pricing-web</module>
+        <module>domain-product-pricing-sdk</module>
+        <module>domain-product-pricing-infra</module>
     </modules>
 
     <properties>
@@ -42,27 +42,27 @@
             <!-- Internal modules -->
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>product-domain-pricing-core</artifactId>
+                <artifactId>domain-product-pricing-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>product-domain-pricing-interfaces</artifactId>
+                <artifactId>domain-product-pricing-interfaces</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>product-domain-pricing-web</artifactId>
+                <artifactId>domain-product-pricing-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>product-domain-pricing-sdk</artifactId>
+                <artifactId>domain-product-pricing-sdk</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>product-domain-pricing-infra</artifactId>
+                <artifactId>domain-product-pricing-infra</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
