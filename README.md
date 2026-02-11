@@ -1,6 +1,6 @@
 # Product Domain Pricing
 
-A reactive domain-layer microservice that orchestrates product pricing, fee management, and eligibility evaluation. Built on [FireflyFramework](https://github.com/fireflyframework/) and Spring WebFlux, this service exposes a CQRS/Saga-driven API that delegates persistence to the **common-platform-product-mgmt** platform service.
+A reactive domain-layer microservice that orchestrates product pricing, fee management, and eligibility evaluation. Built on [FireflyFramework](https://github.com/fireflyframework/) and Spring WebFlux, this service exposes a CQRS/Saga-driven API that delegates persistence to the **core-common-product-mgmt** platform service.
 
 > **Repository:** [https://github.com/firefly-oss/domain-product-pricing](https://github.com/firefly-oss/domain-product-pricing)
 
@@ -88,7 +88,7 @@ All events are published to the `domain-layer` Kafka topic:
 - **Java 25** (JDK)
 - **Apache Maven 3.9+**
 - **Apache Kafka** (default: `localhost:9092`)
-- **common-platform-product-mgmt** service running (default: `http://localhost:8082`)
+- **core-common-product-mgmt** service running (default: `http://localhost:8082`)
 
 ### Environment Variables
 
