@@ -1,7 +1,7 @@
 package com.firefly.domain.product.pricing.infra;
 
-import com.firefly.common.product.sdk.api.*;
-import com.firefly.common.product.sdk.invoker.ApiClient;
+import com.firefly.core.product.sdk.api.*;
+import com.firefly.core.product.sdk.invoker.ApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

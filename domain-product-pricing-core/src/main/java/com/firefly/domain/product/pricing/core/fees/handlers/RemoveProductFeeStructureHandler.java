@@ -2,7 +2,7 @@ package com.firefly.domain.product.pricing.core.fees.handlers;
 
 import com.firefly.common.cqrs.annotations.CommandHandlerComponent;
 import com.firefly.common.cqrs.command.CommandHandler;
-import com.firefly.common.product.sdk.api.ProductFeeStructureApi;
+import com.firefly.core.product.sdk.api.ProductFeeStructureApi;
 import com.firefly.domain.product.pricing.core.fees.commands.RemoveProductFeeStructureCommand;
 import reactor.core.publisher.Mono;
 

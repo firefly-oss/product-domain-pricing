@@ -1,7 +1,7 @@
 package com.firefly.domain.product.pricing.core.fees.commands;
 
 import com.firefly.common.cqrs.command.Command;
-import com.firefly.common.product.sdk.model.FeeApplicationRuleDTO;
+import com.firefly.core.product.sdk.model.FeeApplicationRuleDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
